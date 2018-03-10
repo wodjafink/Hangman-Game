@@ -28,15 +28,13 @@ function updateDisplayWord(){
 		{
 			displayWord[i] = guessWord[i]
 		}
-	}	
+	}
 }
 
-console.log
-
 document.onkeyup = function(event) {
-    var guessKey = event.key
+    var guessKey = event.key;
 
-    console.log("got key " + guessKey + "index is " + guessWord.indexOf(guessKey))
+    console.log("got key " + guessKey + " index is " + guessWord.indexOf(guessKey));
 
     if (guessWord.indexOf(guessKey) > -1)
     {
@@ -49,14 +47,17 @@ document.onkeyup = function(event) {
     	}
     }
     else {
-    	badLetters.push(guessKey)
-    	allowedGuesses--;
+    	if (badLetters.indexOf(guessKey) === -1)
+    	{
+    		badLetters.push(guessKey);
+    		allowedGuesses--;
+    	}
     }
 
     updateDisplayWord();
 
-    document.getElementById("guess-word").innerHTML = displayWord;
+    document.getElementById("guess-word").innerHTML = displayWord.join(" ");
     document.getElementById("num-user-guesses").innerHTML = allowedGuesses;
-    document.getElementById("guessed-letters").innerHTML = badLetters;
+    document.getElementById("guessed-letters").innerHTML = badLetters.join(" ");
 }
 
