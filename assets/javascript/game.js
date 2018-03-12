@@ -16,6 +16,12 @@ for (var i = 0; i < guessWord.length; i++) {
 	displayWord.push('_')
 }
 
+// Since javascript has no native support for if a character is alphabetic,
+// I created this function so that the player won't get docked for entering 
+// a key that isn't alphabetic.  What's interesting is that if you press the
+// 'shift' key to the onKey event, the value of the string is 'Shift' which
+// will pass a regex that checks if a character is alphabetic.  So had to add
+// a check to see if the length is greater than 1.
 function isAlphabetic(s){
 	if (s.length > 1)
 		return false;
