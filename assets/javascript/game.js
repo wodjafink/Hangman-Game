@@ -1,5 +1,5 @@
 //This is the 'dictionary' of words that our game will rely on
-var theWords = ["island", "coconut", "wave", "aloha"]
+var theWords = ["island", "coconut", "wave", "aloha", ]
 
 // Choose a word at random
 var getRandomNumber = Math.floor(Math.random() * theWords.length)
@@ -14,6 +14,21 @@ var ourWordTable = [];
 for (var i = 0; i < guessWord.length; i++) {
 	ourWordTable.push(false);
 	displayWord.push('_')
+}
+
+function isAlphabetic(s){
+	if (s.length > 1)
+		return false;
+
+	if (s.match(/[a-z]/i) === null)
+	{
+		console.log("Non-alpha key is " + s)
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 }
 
 function updateDisplayWord(){
@@ -59,7 +74,7 @@ window.onload = function(event)
 
 document.onkeyup = function(event) {
     var guessKey = event.key;
-
+    guessKey = guessKey.toLowerCase();
     console.log("got key " + guessKey + " index is " + guessWord.indexOf(guessKey));
 
     if ((allowedGuesses > 0) && !(checkWin()))
@@ -75,7 +90,7 @@ document.onkeyup = function(event) {
 	    	}
 	    }
 	    else {
-	    	if (badLetters.indexOf(guessKey) === -1)
+	    	if ((badLetters.indexOf(guessKey) === -1) && isAlphabetic(guessKey))
 	    	{
 	    		badLetters.push(guessKey);
 	    		allowedGuesses--;
