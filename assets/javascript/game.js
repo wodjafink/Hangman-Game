@@ -1,5 +1,5 @@
 //This is the 'dictionary' of words that our game will rely on
-var theWords = ["island", "coconut", "wave", "aloha", ]
+var theWords = ["island", "coconut", "wave", "aloha", "beach", "suncreen", "surfing" ]
 
 // Choose a word at random
 var getRandomNumber = Math.floor(Math.random() * theWords.length)
@@ -110,6 +110,11 @@ document.onkeyup = function(event) {
 		//Have to update one more time to show that the guesses actually reaches 0
 	    updateDisplayWord();
     	updateHTML();
+	}
+	
+	if (checkWin())
+	{
+		document.getElementById("win-image").innerHTML = "<img src=\"assets\/images\/" + guessWord + ".jpg\">"
 	}
 }
 

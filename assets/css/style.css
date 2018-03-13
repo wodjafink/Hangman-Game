@@ -1,0 +1,21 @@
+body {
+	font-family: 'Timmana', sans-serif;
+	background-color: #DFCFBE;
+
+}
+
+.jumbotron{
+	text-align: center;
+	background-color: #95DEE3;
+}
+
+.game-column{
+	height: 500px;
+    border-style: dashed;
+    border-color: #B18F6A;
+    border-width: 7px;
+}
+
+img{
+	max-width: 100%;
+}
