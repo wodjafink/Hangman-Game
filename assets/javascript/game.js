@@ -17,10 +17,6 @@ var allowedGuesses = 13
 //An Array of booleans meant to track what letters have been guessed or not
 var ourWordTable = [];
 
-// Though this gets done in initGame, we do it here as well for the first game, since
-// these start as
-
-
 function initGame()
 {
 	getRandomNumber = Math.floor(Math.random() * theWords.length)
@@ -144,7 +140,11 @@ document.onkeyup = function(event) {
 	{
 		document.getElementById("win-image").innerHTML = "<img src=\"assets\/images\/" + guessWord + ".jpg\">";
 		numWins++;
+		document.getElementById("win-count").innerText = numWins;
+		// Restart the game and update the page
 		initGame();
+		updateDisplayWord();
+    	updateHTML();
 	}
 }
 
