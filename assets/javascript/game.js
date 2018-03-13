@@ -1,5 +1,10 @@
+//Global variables (should not be reset)
+
 //This is the 'dictionary' of words that our game will rely on
 var theWords = ["island", "coconut", "wave", "aloha", "beach", "suncreen", "surfing" ]
+var numWins = 0
+
+//These variables should be reset everytime we play a new game
 
 // Choose a word at random
 var getRandomNumber = Math.floor(Math.random() * theWords.length)
@@ -11,9 +16,31 @@ var allowedGuesses = 13
 
 //An Array of booleans meant to track what letters have been guessed or not
 var ourWordTable = [];
-for (var i = 0; i < guessWord.length; i++) {
-	ourWordTable.push(false);
-	displayWord.push('_')
+
+// Though this gets done in initGame, we do it here as well for the first game, since
+// these start as
+
+
+function initGame()
+{
+	getRandomNumber = Math.floor(Math.random() * theWords.length)
+	guessWord = theWords[getRandomNumber]
+	displayWord = []
+	badLetters = []
+	ourWordTable = []
+
+	allowedGuesses = 13;
+	badLetters = [];
+
+	// for (var i = 0; i < guessWord.length; i++) {
+	// 	ourWordTable[i] = false;
+	// 	displayWord[i] = '_';
+	// }
+	for (var i = 0; i < guessWord.length; i++) {
+		ourWordTable.push(false);
+		displayWord.push('_')
+	}
+
 }
 
 // Since javascript has no native support for if a character is alphabetic,
@@ -75,6 +102,7 @@ function updateHTML()
 // 'dynamic HTML' or whatever right away rather than waiting for the first characters to be pressed
 window.onload = function(event)
 {
+	initGame();
 	updateHTML();
 }
 
@@ -114,7 +142,9 @@ document.onkeyup = function(event) {
 	
 	if (checkWin())
 	{
-		document.getElementById("win-image").innerHTML = "<img src=\"assets\/images\/" + guessWord + ".jpg\">"
+		document.getElementById("win-image").innerHTML = "<img src=\"assets\/images\/" + guessWord + ".jpg\">";
+		numWins++;
+		initGame();
 	}
 }
 
